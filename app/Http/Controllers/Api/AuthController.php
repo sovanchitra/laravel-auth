@@ -28,7 +28,7 @@ class AuthController extends Controller
         $user->sendEmailVerificationNotification();
 
         // Assign user to role
-        $user->roles()->attach(Role::where('name', 'user')->first()->id);
+        optional($user->roles()->attach(Role::where('name', 'user')->first())->id);
 
         $token = $user->createToken('passportToken')->accessToken;
 
